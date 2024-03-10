@@ -1,0 +1,17 @@
+# Use a imagem oficial do Odoo 15
+FROM odoo:15
+
+LABEL maintainer="Wilk Printes wilkstudy01@gmail.com"
+
+COPY ./conf/odoo.conf /etc/odoo/odoo.conf
+COPY ./tools/entrypoint.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh
+
+EXPOSE 8069
+
+VOLUME /mnt/extra-addons
+VOLUME /var/lib/odoo
+VOLUME /var/log/odoo
+
+ENTRYPOINT ["/entrypoint.sh"]
