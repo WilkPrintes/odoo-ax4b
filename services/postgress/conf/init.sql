@@ -1,5 +1,5 @@
 -- Cria o banco de dados bd_odoo (se ainda não existir)
-CREATE DATABASE IF bd_odoodi
+CREATE DATABASE IF bd_odoo
 
 -- Cria o usuário odoo_admin (se ainda não existir) e define a senha
 CREATE USER IF odoo_admin WITH PASSWORD 'odoo_admin'
