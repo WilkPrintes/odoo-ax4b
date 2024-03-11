@@ -3,5 +3,4 @@ FROM postgres:latest
 
 ENV POSTGRES_PASSWORD=admin
 
-COPY conf/init.sql /docker-entrypoint-initdb.d/
 
