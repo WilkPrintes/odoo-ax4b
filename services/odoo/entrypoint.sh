@@ -15,7 +15,7 @@ wait_for_db() {
 }
 
 # Espera até que o servidor PostgreSQL esteja pronto para aceitar conexões
-wait_for_db localhost 5432
+wait_for_db db 5432
 
 # Atualiza todos os módulos do Odoo
 echo "Atualizando todos os módulos do Odoo..."
