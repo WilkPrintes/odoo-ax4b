@@ -18,6 +18,9 @@ services:
   odoo:
     build:
       context: ./services/odoo
+    environment:
+      POSTGRES_USER: odoo_admin
+      POSTGRES_PASSWORD: odoo_admin
     depends_on:
       - db
     ports:
