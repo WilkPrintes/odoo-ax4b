@@ -2,8 +2,7 @@ version: '3.0'
 
 services:
   db:
-    build:
-      context: ./services/postgress
+    image: postgres:latest
     environment:
       POSTGRES_USER: odoo_admin
       POSTGRES_PASSWORD: odoo_admin
