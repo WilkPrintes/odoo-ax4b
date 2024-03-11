@@ -5,4 +5,3 @@ ENV POSTGRES_PASSWORD=admin
 
 COPY conf/init.sql /docker-entrypoint-initdb.d/
 
-EXPOSE 5432
