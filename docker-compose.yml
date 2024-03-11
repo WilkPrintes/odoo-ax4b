@@ -3,14 +3,14 @@ version: '3.0'
 services:
   db:
     image: postgres:latest
+    init: true
+    restart: always
     environment:
       POSTGRES_USER: odoo_admin
       POSTGRES_PASSWORD: odoo_admin
-    ports:
-      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - /var/run/postgresql:/var/run/postgresql  # Monta o diretório do socket do PostgreSQL
+      - /var/run/postgresql:/var/run/postgresql
     networks:
       - odoo_network
 
@@ -28,7 +28,7 @@ services:
       - odooaddons:/mnt/extra-addons
       - odoodata:/var/lib/odoo
       - odoologs:/var/log/odoo
-      - /var/run/postgresql:/var/run/postgresql  # Monta o diretório do socket do PostgreSQL
+      - /var/run/postgresql:/var/run/postgresql
     networks:
       - odoo_network
 
