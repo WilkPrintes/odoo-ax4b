@@ -1,13 +1,12 @@
-version: '4'
+version: '3.0'
 
 services:
   db:
-    image: postgres:latest
     build:
       context: ./services/postgress
     environment:
-      POSTGRES_USER: odoo
-      POSTGRES_PASSWORD: odoo
+      POSTGRES_USER: odoo_admin
+      POSTGRES_PASSWORD: odoo_admin
     ports:
       - "5432:5432"
     volumes:
@@ -16,21 +15,16 @@ services:
       - odoo_network
 
   odoo:
-    image: odoo:15
     build:
       context: ./services/odoo
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
     volumes:
       - odooaddons:/mnt/extra-addons
       - odoodata:/var/lib/odoo
       - odoologs:/var/log/odoo
-    ports:
-      - "8069:8069"
-    depends_on:
-      - db
-    environment:
-      - PGHOST=db
-      - PGUSER=admin
-      - PGPASSWORD=db_odoo
     networks:
       - odoo_network
 

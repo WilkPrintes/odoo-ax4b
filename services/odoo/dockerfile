@@ -1,17 +1,13 @@
-# Use a imagem oficial do Odoo 15
+# Use a imagem oficial do Odoo 15 como a base
 FROM odoo:15
 
-LABEL maintainer="Wilk Printes wilkstudy01@gmail.com"
+# Metadata
+LABEL maintainer="seu_email@example.com"
 
-COPY ./conf/odoo.conf /etc/odoo/odoo.conf
-COPY ./tools/entrypoint.sh /entrypoint.sh
+# Adicione arquivos de configuração, se necessário
+ADD ./odoo.conf /etc/odoo/odoo.conf
 
-RUN chmod +x /entrypoint.sh
+# Exponha a porta, se necessário (geralmente a porta 8069 é exposta pela imagem oficial do Odoo)
+# EXPOSE 8069
 
-EXPOSE 8069
-
-VOLUME /mnt/extra-addons
-VOLUME /var/lib/odoo
-VOLUME /var/log/odoo
-
-ENTRYPOINT ["/entrypoint.sh"]
+# O comando CMD para executar o Odoo é definido na imagem oficial do Odoo

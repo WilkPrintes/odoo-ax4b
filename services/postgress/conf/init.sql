@@ -1,8 +1,18 @@
-# TYPE  DATABASE        USER            ADDRESS                 METHOD
+-- Criação do banco de dados somente se não existir
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_database WHERE datname = 'bd_odoo') THEN
+        CREATE DATABASE bd_odoo;
+    END IF;
+END $$;
 
-# "local" is for Unix domain socket connections only
-local   all             all                                     trust
-# IPv4 local connections:
-host    all             all             127.0.0.1/32            trust
-# IPv6 local connections:
-host    all             all             ::1/128                 trust
+-- Criação do usuário somente se não existir
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_catalog.pg_user WHERE usename = 'odoo_admin') THEN
+        CREATE USER odoo_admin WITH PASSWORD 'odoo_admin';
+    END IF;
+END $$;
+
+-- Atribuição de permissões
+GRANT ALL PRIVILEGES ON DATABASE bd_odoo TO odoo_admin;
