@@ -1,4 +1,4 @@
--- Criação do banco de dados somente se não existir
+-- Verifica se o banco de dados existe antes de tentar criar
 DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_database WHERE datname = 'bd_odoo') THEN
@@ -6,7 +6,7 @@ BEGIN
     END IF;
 END $$;
 
--- Criação do usuário somente se não existir
+-- Verifica se o usuário existe antes de tentar criar
 DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_catalog.pg_user WHERE usename = 'odoo_admin') THEN
@@ -14,5 +14,5 @@ BEGIN
     END IF;
 END $$;
 
--- Atribuição de permissões
+-- Atribui permissões ao usuário para o banco de dados
 GRANT ALL PRIVILEGES ON DATABASE bd_odoo TO odoo_admin;
