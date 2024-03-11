@@ -3,7 +3,6 @@ version: '3.0'
 services:
   db:
     image: postgres:latest
-    init: true
     restart: always
     environment:
       POSTGRES_USER: odoo_admin
