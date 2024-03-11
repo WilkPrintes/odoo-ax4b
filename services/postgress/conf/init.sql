@@ -19,4 +19,7 @@ BEGIN
 END $$;
 
 -- Atribui permissões ao usuário para o banco de dados
-GRANT ALL PRIVILEGES ON DATABASE bd_odoo TO odoo_admin;
+DO $$
+BEGIN
+    EXECUTE 'GRANT ALL PRIVILEGES ON DATABASE bd_odoo TO odoo_admin';
+END $$;
